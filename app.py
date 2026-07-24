@@ -7,7 +7,7 @@ from authentication.database import create_database, get_user
 from authentication.auth import signup, login
 from resume_analyzer.pdf_reader import extract_text
 from resume_analyzer.resume_analysis import analyze_resume
-from resume_analyzer.ollama_ai import get_ai_analysis
+from resume_analyzer.groq_ai import get_ai_analysis
 from aws.s3_services import upload_resume
 from aws.dynamodb_services import save_resume_analysis, get_resume_history, delete_resume_analysis
 

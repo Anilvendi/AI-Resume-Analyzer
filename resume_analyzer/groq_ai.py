@@ -1,4 +1,5 @@
-import ollama
+import os
+from groq import Groq
 
 
 def get_ai_analysis(resume_text):
@@ -16,7 +17,7 @@ Analyze the following resume:
 Give the response in this format:
 
 1. Resume Strengths:
-- 
+-
 
 2. Missing Skills:
 -
@@ -28,9 +29,12 @@ Give the response in this format:
 -
 """
 
+    client = Groq(
+        api_key=os.getenv("GROQ_API_KEY")
+    )
 
-    response = ollama.chat(
-        model="llama3.2:3b",
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
         messages=[
             {
                 "role": "user",
@@ -39,5 +43,4 @@ Give the response in this format:
         ]
     )
 
-
-    return response["message"]["content"]
+    return response.choices[0].message.content
