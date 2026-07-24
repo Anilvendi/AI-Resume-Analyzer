@@ -5,3 +5,4 @@ pypdf
 ollama
 pandas
 bcrypt
+groq
