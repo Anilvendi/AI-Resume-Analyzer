@@ -387,6 +387,16 @@ if st.session_state.logged_in:
     )
 
     if uploaded_file:
+        # Check resume file size (Maximum 1 MB)
+        max_size = 1 * 1024 * 1024  # 1 MB
+        if uploaded_file.size > max_size:
+            st.markdown("""<div class="error-message">
+                ❌ Resume size should be less than 1 MB.
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+            st.stop()
 
         # Read the file content ONCE into memory, so we can reuse it
         # safely for both S3 upload and text extraction without relying
