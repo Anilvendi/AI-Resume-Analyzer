@@ -1,17 +1,16 @@
+import boto3
 import os
-from aws.aws_config import s3_client
-
-S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME")
+from dotenv import load_dotenv
 
 
-def upload_resume(file, user_id):
+load_dotenv()
 
-    file_key = f"users/{user_id}/{file.name}"
 
-    s3_client.upload_fileobj(
-        file,
-        S3_BUCKET_NAME,
-        file_key
-    )
+# DynamoDB Connection
 
-    return True
+dynamodb = boto3.resource(
+    "dynamodb",
+    region_name=os.getenv("AWS_REGION"),
+    aws_access_key_id=os.getenv("AWS_ACCESS_KEY"),
+    aws_secret_access_key=os.getenv("AWS_SECRET_KEY")
+)
