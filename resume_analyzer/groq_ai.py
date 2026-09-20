@@ -1,3 +1,6 @@
+print("🔥 USING THIS GROQ_AI.PY FILE")
+print("🔥 FILE PATH:", __file__)
+print("MODEL BEING USED:", "openai/gpt-oss-20b")
 import os
 import json
 from groq import Groq
@@ -171,10 +174,10 @@ Return JSON in exactly this structure:
         api_key=os.getenv("GROQ_API_KEY")
     )
 
-
+    print("MODEL BEING USED:", "openai/gpt-oss-20b")
     response = client.chat.completions.create(
 
-        model="llama-3.1-8b-instant",
+        model="openai/gpt-oss-20b",
 
         messages=[
             {
